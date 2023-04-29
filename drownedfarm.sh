@@ -1,4 +1,4 @@
-# This automated build was based on the youtube video by Moetingz
+# This automated build was based on the youtube video by Moretingz
 # https://www.youtube.com/watch?v=YPSAIuQR4I4
 
 # Reference coordinate -1060 ~ 1638
