@@ -1,3 +1,6 @@
+# This automated build was based on the youtube video by Moetingz
+# https://www.youtube.com/watch?v=YPSAIuQR4I4
+
 # Reference coordinate -1060 ~ 1638
 # River bottom -50
 # Water level 62 (y-level shown when in boat)
