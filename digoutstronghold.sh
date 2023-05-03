@@ -1,3 +1,5 @@
+### This file is specific to my world, where I dig out a stronghold and put in stairs.
+
 #echo "Min x: "
 #read x1
 x1=-967

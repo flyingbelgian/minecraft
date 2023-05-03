@@ -1,8 +1,9 @@
 # TODO:
-# - automate placement of torches at set y-value intervals
 # - enable use of direction
 
 
+echo "Screen name/number: "
+read screen
 echo "x: "
 read x
 echo "z: "
@@ -11,9 +12,9 @@ echo "Top y: "
 read y
 echo "Bottom y: "
 read ybottom
-echo "Width: "
+echo "Width (min 2): "
 read width
-echo "Height: "
+echo "Height (min 3): "
 read height
 echo "Material Walls: "
 read wallmat
@@ -37,7 +38,7 @@ do
 	((x2stone=x+$i))
 	((y2stone=y+height-$i))
 	((z2stone=z+width-wallR))
-	screen -S mc_server_java -X stuff "fill $x1stone $y1stone $z1stone $x2stone $y2stone $z2stone $wallmat$(printf '\r')"
+	screen -S $screen -X stuff "fill $x1stone $y1stone $z1stone $x2stone $y2stone $z2stone $wallmat$(printf '\r')"
 	
 	((x1air=x+$i))
 	((y1air=y-1-$i))
@@ -45,7 +46,7 @@ do
 	((x2air=x+$i))
 	((y2air=y+height-1-$i))
 	((z2air=z+width-1))
-	screen -S mc_server_java -X stuff "fill $x1air $y1air $z1air $x2air $y2air $z2air air$(printf '\r')"
+	screen -S $screen -X stuff "fill $x1air $y1air $z1air $x2air $y2air $z2air air$(printf '\r')"
 	
 	((x1steplo=x+$i))
 	((y1steplo=y-1-$i))
@@ -53,14 +54,29 @@ do
 	((x2steplo=x+$i))
 	((y2steplo=y-1-$i))
 	((z2steplo=z+width-1))
-	screen -S mc_server_java -X stuff "fill $x1steplo $y1steplo $z1steplo $x2steplo $y2steplo $z2steplo $stairmat[facing=west,half=bottom]$(printf '\r')"
+	screen -S $screen -X stuff "fill $x1steplo $y1steplo $z1steplo $x2steplo $y2steplo $z2steplo $stairmat[facing=west,half=bottom]$(printf '\r')"
+
 	((x1stephi=x+$i))
 	((y1stephi=y+height-$i))
 	((z1stephi=z))
 	((x2stephi=x+$i))
 	((y2stephi=y+height-$i))
 	((z2stephi=z+width-1))
-	screen -S mc_server_java -X stuff "fill $x1stephi $y1stephi $z1stephi $x2stephi $y2stephi $z2stephi $stairmat[facing=east,half=top]$(printf '\r')"
+	screen -S $screen -X stuff "fill $x1stephi $y1stephi $z1stephi $x2stephi $y2stephi $z2stephi $stairmat[facing=east,half=top]$(printf '\r')"
+
+	((torch=($y+1-$i)%5))
+	if [ $wallL == 0 ]; then
+		if [ $torch == 0 ]; then
+			echo "$((x+$i)) $((y+1-$i)) $((z)) $((x+$i)) $((y+1-$i)) $((z))"
+			screen -S $screen -X stuff "fill $((x+$i)) $((y+1-$i)) $((z)) $((x+$i)) $((y+1-$i)) $((z)) wall_torch[facing=south]$(printf '\r')"
+		fi
+	elif [ $wallR == 0 ]; then
+		if [ $torch == 0 ]; then
+			echo "$((x+$i)) $((y+1-$i)) $((z+width-1)) $((x+$i)) $((y+1-$i)) $((z+width-1))"
+			screen -S $screen -X stuff "fill $((x+$i)) $((y+1-$i)) $((z+width-1)) $((x+$i)) $((y+1-$i)) $((z+width-1)) wall_torch[facing=north]$(printf '\r')"
+		fi
+	fi
+
 #	sleep 1
 done
 
@@ -70,7 +86,7 @@ done
 ((x2wallend=x+y-ybottom+2))
 ((y2wallend=ybottom+height))
 ((z2wallend=z+width-wallR))
-screen -S mc_server_java -X stuff "fill $x1wallend $y1wallend $z1wallend $x2wallend $y2wallend $z2wallend $wallmat$(printf '\r')"
+screen -S $screen -X stuff "fill $x1wallend $y1wallend $z1wallend $x2wallend $y2wallend $z2wallend $wallmat$(printf '\r')"
 
 ((x1airend=x+y-ybottom))
 ((y1airend=ybottom))
@@ -78,7 +94,7 @@ screen -S mc_server_java -X stuff "fill $x1wallend $y1wallend $z1wallend $x2wall
 ((x2airend=x+y-ybottom+1))
 ((y2airend=ybottom+height-1))
 ((z2airend=z+width-1))
-screen -S mc_server_java -X stuff "fill $x1airend $y1airend $z1airend $x2airend $y2airend $z2airend air$(printf '\r')"
+screen -S $screen -X stuff "fill $x1airend $y1airend $z1airend $x2airend $y2airend $z2airend air$(printf '\r')"
 
 ((x1stairend=x+y-ybottom))
 ((y1stairend=ybottom+height))
@@ -86,5 +102,5 @@ screen -S mc_server_java -X stuff "fill $x1airend $y1airend $z1airend $x2airend 
 ((x2stairend=x+y-ybottom))
 ((y2stairend=ybottom+height))
 ((z2stairend=z+width-1))
-screen -S mc_server_java -X stuff "fill $x1stairend $y1stairend $z1stairend $x2stairend $y2stairend $z2stairend $stairmat[facing=east,half=top]$(printf '\r')"
+screen -S $screen -X stuff "fill $x1stairend $y1stairend $z1stairend $x2stairend $y2stairend $z2stairend $stairmat[facing=east,half=top]$(printf '\r')"
 
