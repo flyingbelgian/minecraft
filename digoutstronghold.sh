@@ -93,7 +93,7 @@ do
 		screen -S mc_server_java -X stuff "fill $x1 $y1 $z1 $x2 $y1 $z2 air replace tuff$(printf '\r')"
 		screen -S mc_server_java -X stuff "fill $x1 $y1 $z1 $x2 $y1 $z2 air replace deepslate$(printf '\r')"
         fi
-        sleep 1
+        sleep 3
 #	echo $x1 $y1 $z1 $x2 $y1 $z2
 done
 
