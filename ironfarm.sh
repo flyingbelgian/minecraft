@@ -75,7 +75,7 @@ screen -S $screen -X stuff "fill $((x+2)) $((y+1)) $((z-1)) $((x+4)) $((y+9)) $(
 screen -S $screen -X stuff "fill $((x+1)) $((y+6)) $((z-2)) $((x+2)) $((y+9)) $((z+2)) air$(printf '\r')"
 screen -S $screen -X stuff "fill $((x+3)) $((y+10)) $((z-2)) $((x+3)) $((y+14)) $((z-2)) $wall$(printf '\r')"
 screen -S $screen -X stuff "fill $((x+3)) $((y+10)) $((z+2)) $((x+5)) $((y+14)) $((z+2)) $wall$(printf '\r')"
-screen -S $screen -X stuff "fill $((x+5)) $((y+12)) $((z+2)) $((x+5)) $((y+13)) $((z+2)) air$(printf '\r')"
+screen -S $screen -X stuff "fill $((x+4)) $((y+11)) $((z+2)) $((x+5)) $((y+14)) $((z+2)) air$(printf '\r')"
 screen -S $screen -X stuff "fill $((x+5)) $y $((z-2)) $((x+5)) $((y+9)) $((z+1)) $block$(printf '\r')"
 screen -S $screen -X stuff "fill $((x+2)) $y $((z)) $((x+4)) $y $((z)) hopper[facing=west]$(printf '\r')"
 screen -S $screen -X stuff "fill $((x+2)) $y $((z-1)) $((x+4)) $y $((z-1)) hopper[facing=south]$(printf '\r')"
