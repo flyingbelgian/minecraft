@@ -13,6 +13,8 @@ echo "Building Blocks: "
 read block
 echo "Walls: "
 read wall
+echo "Stairs: "
+read stair
 
 #screen=mc_server_java
 #x=-1135
@@ -20,6 +22,7 @@ read wall
 #z=1538
 #block=deepslate_bricks
 #wall=deepslate_brick_wall
+#stair=deepslate_brick_stairs
 
 sign=oak_wall_sign
 bed=white_bed
@@ -58,7 +61,8 @@ screen -S $screen -X stuff "fill $((x+8)) $((y+11)) $((z-4)) $((x+8)) $((y+11)) 
 screen -S $screen -X stuff "fill $((x+9)) $((y+11)) $((z-4)) $((x+9)) $((y+11)) $((z-4)) white_bed[facing=east,part=head]$(printf '\r')"
 # Golem Spawning Floor
 screen -S $screen -X stuff "fill $((x+4)) $((y+14)) $((z-9)) $((x+10)) $((y+14)) $((z+1)) $block$(printf '\r')"
-screen -S $screen -X stuff "fill $((x+4)) $((y+15)) $((z-9)) $((x+10)) $((y+15)) $((z-2)) $block$(printf '\r')"
+screen -S $screen -X stuff "fill $((x+4)) $((y+15)) $((z-9)) $((x+10)) $((y+15)) $((z-3)) $block$(printf '\r')"
+screen -S $screen -X stuff "fill $((x+4)) $((y+15)) $((z-2)) $((x+10)) $((y+15)) $((z-2)) $stair[facing=north,half=bottom]$(printf '\r')"
 # Golem Spawning Wall
 screen -S $screen -X stuff "fill $((x+3)) $((y+16)) $((z-9)) $((x+3)) $((y+16)) $((z-2)) $wall$(printf '\r')"
 screen -S $screen -X stuff "fill $((x+3)) $((y+15)) $((z-2)) $((x+3)) $((y+15)) $((z-2)) $wall$(printf '\r')"
